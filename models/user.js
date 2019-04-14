@@ -12,8 +12,6 @@ var userSchema = new mongoose.Schema({
         url: { type: String, default: '/img/profilePic.jpeg' },
         public_id: String
     },
-    // avatar:{type:String,default:"/public/img/profilePic.jpeg"},
-    // avatar_id:String,
     email:String,
     notifications:[{
         type:mongoose.Schema.Types.ObjectId,
