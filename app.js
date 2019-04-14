@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 //mongodb+srv://hady:hady@cluster0-01fm4.mongodb.net/test?retryWrites=true
 var url = "mongodb://localhost:27017/letsCamp_appv1"||process.env.LETCAMPDB;
-mongoose.connect(url, {useNewUrlParser: true});
+mongoose.connect(process.env.LETCAMPDB, {useNewUrlParser: true});
 app.use(flash());
 app.use(cookieParser());
 
