@@ -74,6 +74,6 @@ app.use(profileRoutes);
 
 
 // open the server
-// app.listen(3000, function () {
-//     console.log("Server has started");
-// });
+app.listen(process.env.PORT || 3000, function () {
+    console.log("Server has started");
+});
