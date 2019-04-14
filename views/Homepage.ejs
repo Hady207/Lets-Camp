@@ -1,0 +1,382 @@
+<% include partials/header%>
+
+<!-- START HERE -->
+    
+<header id="showcase">
+    <div class=" text-white">
+        <div class="container ">
+            <div class="row">
+                <div class="col-lg-6 text-center">
+                    <h1 class="display-2 mt-5 pt-5">
+                        Book Your Camp Today
+                    </h1>
+                    <% if(!currentUser){%>
+                        <p class="lead">Sign Up And enjoy the ride</p>
+                        <a href="/register" class="btn btn-outline-secondary btn-lg text-white">
+                            <i class="fas fa-arrow-right"></i> Sign Up
+                        </a>
+                    <%} else {%>
+                    <p class="lead">Add your camp</p>
+                    <a href="/campgrounds/new" class="btn btn-outline-secondary btn-lg text-white">
+                        <i class="fas fa-arrow-right"></i> Create Your Campground
+                    </a>
+                    <%}%>
+                </div>
+                <div class="col-lg-6">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Most booked Camps Section -->
+<section data-aos="fade-down" data-aos-duration="1000" class="homeGroup2 ">
+    <div class="container">
+        <p id="homeGroup2Title" class="text-center display-4 ">Top Rated Camps</p>
+        <div class="row">
+        <%if(!campground || !campground.length){%>
+            <p>No Camps Added yet</p>
+        <%} else {%>
+            <div id="firstAnime" class="mt-sm-3 mt-md-0 col-md-4">
+                <div class="card mb-2">
+                    <img src="<%=campground[0].image%>"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><%=campground[0].campName%></h5>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star <%if(campground[0].rating>1.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(campground[0].rating>2.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(campground[0].rating>3.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(campground[0].rating>4.5){%>checked<%}%>"></span>
+                        <blockquote class="card-bodyquote"><%=campground[0].owner.firstName + " "+campground[0].owner.lastName%>
+                            <footer class="blockquote-footer">
+                                <small>
+                                    <%=campground[0].owner.username%>
+                                </small>
+                            </footer>
+                        </blockquote>
+                        <p class="card-text"><%=campground[0].campDescription.substring(0,100)%></p>
+                        <div class="d-flex justify-content-between">
+                            <a href="campgrounds/<%=campground[0]._id%>" class="btn btn-outline-primary ">View</a>
+                            <div class="font-weight-bold align-self-center">$<%=campground[0].cost%></div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center text-muted">
+                        <%=moment(campground[0].createdAt).fromNow()%>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-sm-3 mt-md-0 col-md-4">
+                <div class="card mb-2">
+                    <img src="<%=campground[1].image%>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><%=campground[1].campName%></h5>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star <%if(campground[1].rating>1.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(campground[1].rating>2.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(campground[1].rating>3.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(campground[1].rating>4.5){%>checked<%}%>"></span>
+                        <blockquote class="card-bodyquote"><%=campground[1].owner.firstName + " "+campground[1].owner.lastName%>
+                            <footer class="blockquote-footer">
+                                <small>
+                                    <%=campground[1].owner.username%>
+                                </small>
+                            </footer>
+                        </blockquote>
+                        <p class="card-text"><%=campground[1].campDescription.substring(0,100)%></p>
+                        <div class="d-flex justify-content-between">
+                            <a href="campgrounds/<%=campground[1]._id%>" class="btn btn-outline-primary">View</a>
+                            <div class="font-weight-bold align-self-center">$<%=campground[1].cost%></div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center text-muted">
+                         <%=moment(campground[1].createdAt).fromNow()%>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-sm-3 mt-md-0 col-md-4">
+                <div class="card mb-2">
+                    <img src="<%=campground[2].image%>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><%=campground[2].campName%></h5>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star <%if(campground[2].rating>1.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(campground[2].rating>2.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(campground[2].rating>3.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(campground[2].rating>4.5){%>checked<%}%>"></span>
+                        <blockquote class="card-bodyquote"><%=campground[2].owner.firstName + " "+campground[2].owner.lastName%>
+                            <footer class="blockquote-footer">
+                                <small>
+                                    <%=campground[2].owner.username%>
+                                </small>
+                            </footer>
+                        </blockquote>
+                        <p class="card-text"><%=campground[2].campDescription.substring(0,100)%></p>
+                        <div class="d-flex justify-content-between">
+                            <a href="campgrounds/<%=campground[2]._id%>" class="btn btn-outline-primary">View</a>
+                            <div class="font-weight-bold align-self-center">$<%=campground[2].cost%></div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center text-muted">
+                         <%=moment(campground[2].createdAt).fromNow()%>
+                    </div>
+                </div>
+            </div>
+            <%}%>
+        </div>
+    </div>
+</section>
+
+<!-- Section of the review of the day -->
+<section data-aos="fade-right" data-aos-duration="1000" class="homeGroup3 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2 id="homeGroup3title" class="mb-5">Review of the day</h2>
+                <div class="card">
+                    <div class="card-header font-weight-italic">Review of the day</div>
+                    <div class="card-body">
+                    <%if(!review){%>
+                        <p class="card-title">No Reviews posted yet</p>
+                    <%} else {%>
+                        <div class="card-title d-flex">
+                            <span><img src="<%=review.author.avatar%>" width="76" height="76" alt="..." class="rounded"></span>
+                            <div class="d-flex-column ml-3">
+                            <h5 class="card-title "> <%=review.title%></h5>
+                                <h5 class="align-self-start"><a href="/campgrounds/<%=review.campground.id%>" class="card-link"><%=review.campground.campName%></a></h5>
+                                <h6 class="align-self-center text-muted card-subtitle"><%=review.author.firstName + " "+ review.author.lastName%></h6>
+                                <div class="mb-2 d-felx justify-content">
+                                <%- '<span class="fa fa-star checked"></span>'.repeat(review.rating)%><%- '<span class="fa fa-star"></span>'.repeat(5-review.rating)%>
+                                <button class="ml-2 btn btn-sm btn-outline-primary" >
+                                <i class="fas fa-thumbs-up"></i> <span class="badge badge-light"><%= review.likes.length %></span>
+                              </button>
+                              </div>
+                            </div>
+                        </div>
+                        <p class="card-text"><%=review.body%></p>
+                    </div>
+                    <div class="card-footer text-center text-muted">
+                        <%=moment(review.updatedAt).fromNow()%>
+                    </div>
+                    <%}%>
+                </div>
+            </div>
+            <!-- Latest Reviews -->
+            <div class="col-md-4 d-none d-md-block ">
+                <h2 id="homeGroup3title" class="mb-5 ">Latest Reviews</h2>
+                <%if(!reviews || !reviews.length){%>
+                        <p class="card-title">No Reviews posted yet</p>
+                    <%} else {%>
+                    
+                <div class="card">
+                    <div class="card-header">
+                        <em>Latset reviews</em>
+                    </div>
+
+                    <a href="/campgrounds/<%=reviews[0].campground.id%>" id="popUp" class="list-group-item list-group-item-action">
+                        <div class="d-flex">
+                            <div class="justify-content-center ml-0">
+                                <span><img src="<%=reviews[0].author.avatar%>" width="76" height="76" alt="..." class="rounded"></span>
+                            </div>
+                            <div class="d-flex-column   ml-3">
+                                <div class="d-flex  justify-content-between">
+                                    <h5 class="mb-1"><%=reviews[0].title%></h5>
+                                    <small class="text-muted "><%=moment(reviews[0].createdAt).fromNow()%></small>
+                                </div>
+                                <small class="text-muted">By: <%=reviews[0].author.firstName + " "+ reviews[0].author.lastName%></small>
+                                <p class="mb-1"><%=reviews[0].body.substring(0,50)%></p>
+                                <small class="text-muted"><em>for: <%=reviews[0].campground.campName%></em></small>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/campgrounds/<%=reviews[1].campground.id%>" id="popUp" class="list-group-item list-group-item-action">
+                        <div class="d-flex">
+                            <div class="justify-content-center ml-0">
+                                <span><img src="<%=reviews[1].author.avatar%>" width="76" height="76" alt="..." class="rounded"></span>
+                            </div>
+                            <div class="d-flex-column   ml-3">
+                                <div class="d-flex  justify-content-between">
+                                    <h5 class="mb-1"><%=reviews[1].title%></h5>
+                                    <small class="text-muted ml-2"><%=moment(reviews[1].createdAt).fromNow()%></small>
+                                </div>
+                                <small class="text-muted">By: <%=reviews[1].author.firstName + " "+ reviews[1].author.lastName%></small>
+                                <p class="mb-1"><%=reviews[1].body.substring(0,50)%></p>
+                                <small class="text-muted"><em>for: <%=reviews[1].campground.campName%></em></small>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="/campgrounds/<%=reviews[2].campground.id%>" id="popUp" class="list-group-item list-group-item-action">
+                        <div class="d-flex">
+                            <div class="justify-content-center ml-0">
+                                <span><img src="<%=reviews[2].author.avatar%>" width="76" height="76" alt="..." class="rounded"></span>
+                            </div>
+                            <div class="d-flex-column   ml-3">
+                                <div class="d-flex  justify-content-between">
+                                    <h5 class="mb-1"><%=reviews[2].title%></h5>
+                                    <small class="text-muted "><%=moment(reviews[2].createdAt).fromNow()%></small>
+                                </div>
+                                <small class="text-muted">By: <%=reviews[2].author.firstName + " "+ reviews[2].author.lastName%></small>
+                                <p class="mb-1"><%=reviews[2].body.substring(0,80)%></p>
+                                <small class="text-muted"><em>for: <%=reviews[2].campground.campName%></em></small>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="<%=reviews[2].campground.id%>" id="popUp" class="list-group-item list-group-item-action">
+                        <div class="d-flex">
+                            <div class="justify-content-center ml-0">
+                                <span><img src="<%=reviews[2].author.avatar%>" width="76" height="76" alt="..." class="rounded"></span>
+                            </div>
+                            <div class="d-flex-column   ml-3">
+                                <div class="d-flex  justify-content-between">
+                                    <h5 class="mb-1"><%=reviews[2].title%></h5>
+                                    <small class="text-muted"><%=moment(reviews[2].createdAt).fromNow()%></small>
+                                </div>
+                                <small class="text-muted">By: <%=reviews[2].author.firstName + " "+ reviews[2].author.lastName%></small>
+                                <p class="mb-1"><%=reviews[2].body.substring(0,100)%></p>
+                                <small class="text-muted">Donec id elit non mi porta.</small>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="card-footer text-center">
+                        <a href="/reviews">View more</a>
+                    </div>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-aos="fade-up" data-aos-duration="1000" class="homeGroup4 mt-5">
+    <h2 id="homeGroup4title" class="text-center mb-5">Recent Camps</h2>
+    <%if(!campgrounds || !campgrounds.length){%>
+    <p class="card-title">No Reviews posted yet</p>
+    <%} else {%>
+    
+    <div class="container">
+        <div class="row">
+            <div data-aos="flip-left" data-aos-duration="2000" class="mt-sm-3 mt-md-0 col-md-3">
+                <div class="card">
+                    <img src="<%=campgrounds[0].image%>" width="250" height="250" alt="" class="card-img-top img-fluid">
+                    <div class="card-body">
+                        <h5 class="card-title"><%=campgrounds[0].campName%></h5>
+                        <%if(campgrounds[0].rating === 0){%>
+                        <em>No reviews yet.</em>
+                        <%} else {%>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star <%if(campgrounds[0].rating>1.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(campgrounds[0].rating>2.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(campgrounds[0].rating>3.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(campgrounds[0].rating>4.5){%>checked<%}%>"></span>
+                        <%}%>
+                        <blockquote class="card-bodyquote"><%=campgrounds[0].owner.firstName + " "+ campgrounds[0].owner.lastName%>
+                            <footer class="blockquote-footer">
+                                <small>
+                                    <%=campgrounds[0].owner.username%>
+                                </small>
+                            </footer>
+                        </blockquote>
+                        <p class="card-text"><%=campgrounds[0].campDescription.substring(0,100)%></p>
+                        <div class="d-flex justify-content-between">
+                            <a href="/campgrounds/<%=campgrounds[0]._id%>" class="btn btn-outline-primary">View</a>
+                            <div class="font-weight-bold align-self-center">$<%=campgrounds[0].cost%></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-aos="flip-left" data-aos-duration="2000" class="mt-sm-3 mt-md-0 col-md-3">
+                <div class="card">
+                    <img src="<%=campgrounds[1].image%>" width="250" height="250" alt="" class="card-img-top img-fluid">
+                    <div class="card-body">
+                        <h5 class="card-title"><%=campgrounds[1].campName%></h5>
+                        <%if(campgrounds[1].rating === 0){%>
+                        <em>No reviews yet.</em>
+                        <%} else {%>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star <%if(campgrounds[1].rating>1.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(campgrounds[1].rating>2.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(campgrounds[1].rating>3.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(campgrounds[1].rating>4.5){%>checked<%}%>"></span>
+                        <%}%>
+                        <blockquote class="card-bodyquote"><%=campgrounds[1].owner.firstName + " "+ campgrounds[1].owner.lastName%>
+                            <footer class="blockquote-footer">
+                                <small>
+                                    <%=campgrounds[1].owner.username%>
+                                </small>
+                            </footer>
+                        </blockquote>
+                        <p class="card-text"><%=campgrounds[1].campDescription.substring(0,100)%></p>
+                        <div class="d-flex justify-content-between">
+                            <a href="/campgrounds/<%=campgrounds[1]._id%>" class="btn btn-outline-primary">View</a>
+                            <div class="font-weight-bold align-self-center">$<%=campgrounds[1].cost%></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-aos="flip-left" data-aos-duration="2000" class="mt-sm-3 mt-md-0 col-md-3">
+                <div class="card">
+                    <img src="<%=campgrounds[2].image%>" width="250" height="250" alt="" class="card-img-top img-fluid">
+                    <div class="card-body">
+                        <h5 class="card-title"><%=campgrounds[2].campName%></h5>
+                        <%if(campgrounds[2].rating === 0){%>
+                        <em>No reviews yet.</em>
+                        <%} else {%>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star <%if(campgrounds[2].rating>1.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(campgrounds[2].rating>2.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(campgrounds[2].rating>3.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(campgrounds[2].rating>4.5){%>checked<%}%>"></span>
+                        <%}%>
+                        <blockquote class="card-bodyquote"><%=campgrounds[2].owner.firstName + " "+ campgrounds[2].owner.lastName%>
+                            <footer class="blockquote-footer">
+                                <small>
+                                    <%=campgrounds[2].owner.username%>
+                                </small>
+                            </footer>
+                        </blockquote>
+                        <p class="card-text"><%=campgrounds[2].campDescription.substring(0,100)%></p>
+                        <div class="d-flex justify-content-between">
+                            <a href="/campgrounds/<%=campgrounds[2]._id%>" class="btn btn-outline-primary">View</a>
+                            <div class="font-weight-bold align-self-center">$<%=campgrounds[2].cost%></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-aos="flip-left" data-aos-duration="2000" class="mt-sm-3 mt-md-0 col-md-3">
+                <div class="card">
+                    <img src="<%=campgrounds[3].image%>" width="250" height="250" alt="" class="card-img-top img-fluid">
+                    <div class="card-body">
+                        <h5 class="card-title"><%=campgrounds[3].campName%></h5>
+                        <%if(campgrounds[3].rating === 0){%>
+                        <em>No reviews yet.</em>
+                        <%} else {%>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star <%if(campgrounds[3].rating>1.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(campgrounds[3].rating>2.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(campgrounds[3].rating>3.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(campgrounds[3].rating>4.5){%>checked<%}%>"></span>
+                        <%}%>
+                        <blockquote class="card-bodyquote"><%=campgrounds[3].owner.firstName + " "+ campgrounds[3].owner.lastName%>
+                            <footer class="blockquote-footer">
+                                <small>
+                                    <%=campgrounds[3].owner.username%>
+                                </small>
+                            </footer>
+                        </blockquote>
+                        <p class="card-text"><%=campgrounds[3].campDescription.substring(0,100)%></p>
+                        <div class="d-flex justify-content-between">
+                            <a href="/campgrounds/<%=campgrounds[3]._id%>" class="btn btn-outline-primary">View</a>
+                            <div class="font-weight-bold align-self-center">$<%=campgrounds[3].cost%></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%}%>
+    </div>
+</section>
+
+
+<% include partials/footer%>

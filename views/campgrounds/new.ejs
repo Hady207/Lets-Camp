@@ -1,0 +1,121 @@
+<% include ../partials/header%>
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/fileregister.css">
+
+<section class="adding-camp-form mt-5">
+    <div class="container">
+    <a href="/campgrounds" class="card-link float-right"><i class="fas fa-arrow-circle-left"></i> Go Back</a>
+
+        <form action="/campgrounds" method="POST" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputCamp4">Camp Name</label>
+                    <input type="text" class="form-control" id="inputCamp4" name="Camp[campName]" placeholder="Camp Name">
+                </div>
+                <div class="form-group col-md-6 content">
+                    <input style="opacity:0;" type="file" name="images" id="file-2" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple accept="image/*" />
+                    <label for="file-2" class="" ><i class="fas fa-upload"></i><span> Upload a profile picture</span></label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="inputCity">City</label>
+                    <select id="inputState" class="form-control" name="Camp[city]">
+                        <option selected>Choose...</option>
+                        <option>Hawally</option>
+                        <option>AL-Farwanya</option>
+                        <option>Salmiya</option>
+                        <option>Al-egela</option>
+                        <option>Al-jahara</option>
+                        <option>Kuwait</option>
+                        <option>Sabhan</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputLocation">Map Location</label>
+                    <input type="text" class="form-control" name="Camp[location]" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputAddress">Address</label>
+                    <input type="text" class="form-control" name="Camp[address]" id="inputAddress" placeholder="1234 Main St">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputPrice">Cost</label>
+                    <input class="form-control" id="inputPrice" type="number" name="Camp[cost]" placeholder="$500" min="0.01"
+                        step="0.01">
+                </div>
+                <div class="form-group col-md-6 justify-content-center">
+                    <!-- <div class="mb-2">Payment Method</div>
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" name="Camp[cash]" value="Cash" class="custom-control-input" id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1"><i class="fas fa-money-bill-wave-alt"></i>Cash</label>
+                    </div>
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" id="customCheck2" name="Camp[paypal]" value="Paypal" class="custom-control-input">
+                        <label class="custom-control-label" for="customCheck2"><i class="fab fa-cc-paypal"></i>PayPal</label>
+                    </div>
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" id="customCheck3" name="Camp[knet]" value="Knet" class="custom-control-input">
+                        <label class="custom-control-label" for="customCheck3"><i class="fas fa-credit-card"></i>KNET</label>
+                    </div> -->
+                    <label for="phonenumber">Phone Number</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">+965</span>
+                                </div>
+                                <input type="text" name="Camp[phone]" class="form-control" id="phonenumber" placeholder="000-000-00" required="">
+                                <div class="invalid-feedback" style="width: 100%;">
+                                    Your Phone number is required.
+                                </div>
+                            </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description">Camp Description</label>
+                <textarea class="form-control" name="Camp[campDescription]" id="description" cols="20" rows="10" placeholder="Write About your camp"></textarea>
+            </div>
+            <button type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
+        </form>
+    </div>
+</section>
+
+<script >
+/*
+	By Osvaldas Valutis, www.osvaldas.info
+	Available for use under the MIT License
+*/
+
+'use strict';
+
+;( function ( document, window, index )
+{
+	var inputs = document.querySelectorAll( '.inputfile' );
+	Array.prototype.forEach.call( inputs, function( input )
+	{
+		var label	 = input.nextElementSibling,
+			labelVal = label.innerHTML;
+
+		input.addEventListener( 'change', function( e )
+		{
+			var fileName = '';
+			if( this.files && this.files.length > 1 )
+				fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+			else
+				fileName = e.target.value.split( '\\' ).pop();
+
+			if( fileName )
+				label.querySelector( 'span' ).innerHTML = fileName;
+			else
+				label.innerHTML = labelVal;
+		});
+
+		// Firefox bug fix
+		input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
+		input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
+	});
+}( document, window, 0 ));
+</script>
+
+<% include ../partials/footer%>

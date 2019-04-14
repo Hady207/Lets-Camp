@@ -1,0 +1,83 @@
+<% include ../partials/header%>
+<link rel="stylesheet" type="text/css" href="/stylesheets/background.css">
+
+<section class="reviews-section mt-3">
+    <div class="container">
+        <div class="card">
+            <form action="/campgrounds/<%=campground_id%>/reviews/<%=review._id%>?_method=PUT" method="POST">
+                <div class="card-header">
+                    <a href="/campgrounds/<%=campground_id%>" class="card-link float-right"><i class="fas fa-arrow-circle-left"></i> Go Back</a>
+                    <h5>Edit Review for
+                        <%=campground.campName%>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <input type="text" class="form-control-plaintext card-text" style="font-family: sans-serif;" value="By <%=review.author.firstName +" "+ review.author.lastName%>" readonly>
+                    <div class="form-group">
+                        <label for="rating" style="font-family: sans-serif;">Leave a rating:</label>
+                        <fieldset class="starability-basic form-group" id="rating" style="margin-right:100%;">
+                        <div class="stars">
+                            <input type="radio" name="review[rating]" class="star-1" id="star-1" value="1" <% if (review.rating === 1){%> checked<%}%> />
+                            <label class="star-1" for="star-1" title="1 star - terrible">1</label>
+                            <input type="radio" name="review[rating]" class="star-2" id="star-2" value="2" <% if (review.rating === 2){%> checked<%}%> />
+                            <label class="star-2" for="star-2" title="2 stars - not good">2</label>
+                            <input type="radio" name="review[rating]" class="star-3" id="star-3" value="3" <% if (review.rating === 3){%> checked<%}%> />
+                            <label class="star-3" for="star-3"title="3 stars - Average">3</label>
+                            <input type="radio" name="review[rating]" class="star-4" id="star-4" value="4" <% if (review.rating === 4){%> checked<%}%> />
+                            <label class="star-4" for="star-4" title="4 stars - Very good">4</label>
+                            <input type="radio" name="review[rating]" class="star-5" id="star-5" value="5"<% if (review.rating === 5){%> checked<%}%> />
+                            <label class="star-5" for="star-5" title="5 stars - Amazing">5</label>
+                            <span></span>
+                        </div>
+                            <!-- <div>
+                                <input type="radio" name="review[rating]" value="5" id="first-rate5" <% if (review.rating === 5){%> checked<%}%>>
+                                <label for="first-rate5" title="5 stars - Amazing">
+                                    <%- "<span class='fa fa-star checked'></span>".repeat(5)%>
+                                </label>
+                            </div>
+                            <div>
+                                <input type="radio" name="review[rating]" value="4" id="first-rate4"  <% if (review.rating === 4){%> checked<%}%>>
+                                <label for="first-rate4" title="4 stars - Very good">
+                                    <%- "<span class='fa fa-star checked'></span>".repeat(4)%>
+                                </label>
+                            </div>
+                            <div>
+                                <input type="radio" name="review[rating]" value="3" id="first-rate3"  <% if (review.rating === 3){%> checked<%}%>>
+                                <label for="first-rate3" title="3 stars - Average">
+                                    <%- "<span class='fa fa-star checked'></span>".repeat(3)%>
+                                </label>
+                            </div>
+                            <div>
+                                <input type="radio" name="review[rating]" value="2" id="first-rate2"  <% if (review.rating === 2){%> checked<%}%>>
+                                <label for="first-rate2" title="2 stars - not good">
+                                    <%- "<span class='fa fa-star checked'></span>".repeat(2)%>
+                                </label>
+                            </div>
+                            <div>
+                                <input type="radio" name="review[rating]" value="1" id="first-rate1"  <% if (review.rating === 1){%> checked<%}%> >
+                                <label for="first-rate1" title="1 star - terrible">
+                                    <%- "<span class='fa fa-star checked'></span>".repeat(1)%>
+                                </label>
+                            </div> -->
+                        </fieldset>
+                    </div>
+                    <label class="card-text text-muted" for="reviewTitle">Title of the Review</label>
+                    <input type="text" name="review[title]" class="form-control card-text mb-1" id="reviewTitle"
+                        value="<%=review.title%>" required>
+                    <label class="card-text text-muted mt-2" for="reviewBody">Review</label>
+                    <textarea class="form-control card-text" name="review[body]" id="reviewBody" cols="30" rows="10"
+                        placeholder=""><%=review.body%></textarea>
+                </div>
+                <div class="card-footer p-0">
+                    <button class="btn btn-success btn-block" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<% include ../partials/footer%>

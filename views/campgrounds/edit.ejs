@@ -1,0 +1,134 @@
+<% include ../partials/header%>
+<link rel="stylesheet" type="text/css" href="/stylesheets/fileregister.css">
+
+
+<section class="adding-camp-form mt-5">
+    <div class="container">
+    <a href="/campgrounds/<%=campground._id%>" class="card-link float-right"><i class="fas fa-arrow-circle-left"></i> Go Back</a>
+        <form action="/campgrounds/<%=campground._id%>?_method=PUT" method="POST" enctype="multipart/form-data" id="postEditForm">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputCamp4">Camp Name</label>
+                    <input type="text" class="form-control" id="inputCamp4" name="Camp[campName]" value="<%=campground.campName%>" >
+                </div>
+                <div class="form-group col-md-6">
+                <input style="opacity:0;" type="file" name="images" id="file-2" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple accept="image/*" />
+                <label for="file-2" class="" ><i class="fas fa-upload"></i><span> Upload a profile picture</span></label>
+                <br>
+                <%campground.images.forEach(function(image,i){%>
+                        <img src="<%=image.url%>" width="100px" alt="">
+                        <label for="image<%=i%>">Delete?</label>
+                        <input type="checkbox" name="deleteImages[]" class="imageDeleteCheckbox" id="image<%=i%>" value="<%=image.public_id%>">
+                <%});%>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="inputCity">City</label>
+                    <select id="inputState" class="form-control" name="Camp[city]">
+                        <option selected><%=campground.city%></option>
+                        <option>Hawally</option>
+                        <option>AL-Farwanya</option>
+                        <option>Salmiya</option>
+                        <option>Al-egela</option>
+                        <option>Al-jahara</option>
+                        <option>Kuwait</option>
+                        <option>Sabhan</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputLocation">Map Location</label>
+                    <input type="text" class="form-control" name="Camp[location]" value="<%=campground.location%>" id="inputAddress2">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputAddress">Address</label>
+                    <input type="text" class="form-control" name="Camp[address]" value="<%=campground.address%>" id="inputAddress" >
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputPrice">Cost</label>
+                    <input class="form-control" id="inputPrice" type="number" name="Camp[cost]" value="<%=campground.cost%>" placeholder="$500" min="0.01"
+                        step="0.01">
+                </div>
+                <div class="form-group col-md-6 justify-content-center">
+                    <label for="phonenumber">Phone Number</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">+965</span>
+                                </div>
+                                <input type="text" name="Camp[phone]" class="form-control" id="phonenumber" placeholder="000-000-00" required="">
+                                <div class="invalid-feedback" style="width: 100%;">
+                                    Your Phone number is required.
+                                </div>
+                            </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description">Camp Description</label>
+                <textarea class="form-control" name="Camp[campDescription]"  id="description" cols="20" rows="10" placeholder="Write About your camp"><%=campground.campDescription%></textarea>
+            </div>
+            <button type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
+        </form>
+    </div>
+</section>
+<script>
+	// find post edit form
+	let postEditForm = document.getElementById('postEditForm');
+	// add submit listener to post edit form
+	postEditForm.addEventListener('submit', function(event) {
+		// find length of uploaded images
+		let imageUploads = document.getElementById('file-2').files.length;
+		// find total number of existing images
+		let existingImgs = document.querySelectorAll('.imageDeleteCheckbox').length;
+		// find total number of potential deletions
+		let imgDeletions = document.querySelectorAll('.imageDeleteCheckbox:checked').length;
+		// calculate total after removal of deletions and addition of new uploads
+		let newTotal = existingImgs - imgDeletions + imageUploads;
+		// if newTotal is greater than four
+		if(newTotal > 4) {
+			// prevent form from submitting
+			event.preventDefault();
+			// calculate removal amount
+			let removalAmt = newTotal - 4;
+			// alert user of their error
+			alert(`You need to remove at least ${removalAmt} image${removalAmt === 1 ? '' : 's'}!`);
+		}
+	});
+
+</script>
+<script>
+'use strict';
+
+;( function ( document, window, index )
+{
+	var inputs = document.querySelectorAll( '.inputfile' );
+	Array.prototype.forEach.call( inputs, function( input )
+	{
+		var label	 = input.nextElementSibling,
+			labelVal = label.innerHTML;
+
+		input.addEventListener( 'change', function( e )
+		{
+			var fileName = '';
+			if( this.files && this.files.length > 1 )
+				fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+			else
+				fileName = e.target.value.split( '\\' ).pop();
+
+			if( fileName )
+				label.querySelector( 'span' ).innerHTML = fileName;
+			else
+				label.innerHTML = labelVal;
+		});
+
+		// Firefox bug fix
+		input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
+		input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
+	});
+}( document, window, 0 ));
+</script>
+
+
+
+<% include ../partials/footer%>

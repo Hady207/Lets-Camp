@@ -1,0 +1,63 @@
+
+.form-signin {
+  width: 100%;
+  /* max-width: 330px; */
+  padding: 15px;
+  margin: auto;
+  font-family: sans-serif;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="text"] {
+  border:0;
+  background:none;
+  width:280px;
+  margin: 20px auto;
+  text-align: center;
+  border:2px solid #3498db;
+  outline: none;
+  transition: 0.25s;
+}
+.form-signin input[type="password"] {
+  border:0;
+  margin: 20px auto;
+  width:280px;
+  text-align: center;
+  border:2px solid #3498db;
+  outline: none;
+  transition: 0.25s;
+}
+
+.form-signin input[type = "text"]:focus,.form-signin input[type = "password"]:focus{
+  width:320px;
+  border-color: #2ecc71;
+}
+
+.form-signin input[type="submit"]{
+  border:0;
+  background:none;
+  display: block;
+  margin:20px auto;
+  text-align: center;
+  border:2px solid #2ecc71;
+  padding:14px 40px;
+  outline:none; 
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.form-signin input[type="submit"]:hover{
+  background: #2ecc71;
+}

@@ -1,0 +1,158 @@
+
+
+.form-signin {
+  width: 100%;
+  /* max-width: 330px; */
+  padding: 15px;
+  margin: auto;
+  font-family: sans-serif;
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+.form-signin input[type="text"] {
+  /* border:0; */
+
+  width: 100%;
+
+  text-align: center;
+  /* border:2px solid #3498db; */
+  outline: none;
+  transition: 0.25s;
+}
+
+.form-signin input[type="file"] {
+  /* border:0; */
+
+  width: 100%;
+
+  text-align: center;
+  /* border:2px solid #3498db; */
+  outline: none;
+  transition: 0.25s;
+}
+
+.form-signin input[type="text"] {
+  /* border:0; */
+
+  width: 100%;
+  margin: 20px auto;
+  text-align: center;
+  /* border:2px solid #3498db; */
+  outline: none;
+  transition: 0.25s;
+}
+.form-signin input[type="email"] {
+  /* border:0; */
+
+  width: 100%;
+  margin: 20px auto;
+  text-align: center;
+  /* border:2px solid #3498db; */
+  outline: none;
+  transition: 0.25s;
+}
+
+.form-signin input[type="password"] {
+  /* border:0; */
+  margin: 20px auto;
+  width: 100%;
+  text-align: center;
+  /* border:2px solid #3498db; */
+  outline: none;
+  transition: 0.25s;
+}
+.form-signin input[type="text"]:focus,
+.form-signin input[type="email"]:focus,
+.form-signin input[type="password"]:focus {
+  width: 80%;
+  border-color: #2ecc71;
+}
+
+.form-signin input[type="submit"] {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #2ecc71;
+  padding: 14px 40px;
+  outline: none;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.form-signin input[type="submit"]:hover {
+  background: #2ecc71;
+}
+
+.js .inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile+label {
+  max-width: 80%;
+  font-size: 1.25rem;
+  /* 20px */
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  display: inline-block;
+  
+  overflow: hidden;
+  padding: 0.625rem 1.25rem;
+  /* 10px 20px */
+}
+
+.no-js .inputfile+label {
+  display: none;
+}
+
+.inputfile:focus+label,
+.inputfile.has-focus+label {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+
+.inputfile-1+label {
+  color: #f1e5e6;
+  background-color: #205cbc;
+  border-radius: 24px;
+}
+
+.inputfile-1:focus+label,
+.inputfile-1.has-focus+label,
+.inputfile-1+label:hover {
+  background-color: #06075a;
+}
+
+.content {
+width: 100%;
+max-width: 800px;
+text-align: center;
+margin: 0 auto;
+padding: 0 0 3em 0;
+}

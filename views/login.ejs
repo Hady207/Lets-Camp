@@ -1,0 +1,36 @@
+<% include partials/header%>
+<link rel="stylesheet" type="text/css" href="/stylesheets/loginStyle.css">
+
+
+<section>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4 text-center">Login and Book You Camp Now</h1>
+             <p class="lead text-center">Signing in gives you the power to book camps and write your own reviews</p> 
+        </div>
+    </div>
+</section>
+
+<section>
+
+    <form action="/login" method="POST" class=" text-center form-signin AVAST_PAM_loginform">
+ 
+    <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal text-center">Login</h1>
+    <label for="inputEmail" class="sr-only">Username</label>
+    <input type="text" id="inputEmail" name="username" class="form-control" placeholder="Username" required="" autofocus="">
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required="">
+    <div class="checkbox mb-3">
+      <label>
+        <a href="/forgot">Forget Password</a>
+      </label>
+    </div>
+    <input type="submit" class="btn btn-outline-success" value="Login">
+    <p class="mt-5 mb-3 text-muted">© 2019-2020</p>
+
+   
+</form>
+</section>
+
+<% include partials/footer%>

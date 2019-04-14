@@ -1,0 +1,494 @@
+<% include ../partials/header%>
+
+<!--Search items for desktop-->
+<section class="campGroup1 d-none d-md-block">
+  <div class="container-fluid bg-dark">
+    <div class="container">
+      <form action="/campgrounds" method="GET">
+        <div class="form-group form-inline mx-sm-auto pt-2">
+          <input id="search-bar" class="form-control" name="search" type="search" placeholder="Search">
+          <button id="search-button" type="submit" class="btn btn-success ml-2"><i class="fas fa-search"></i>
+            Search</button>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4 btn-containerN">
+            <button class="btn btn-secondary dropdown-toggle btn-block borderLess" type="button" id="dropdownMenuButton"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="far fa-money-bill-alt"></i> Price
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width:370px">
+              
+              
+              <input  type="checkbox" value="500" name="cost" id="inlineCheckbox1" class="dropdown-item form-check-input ml-5">
+              <label class="dropdown-item form-check-label disabled" for="inlineCheckbox1">$500</label>
+              <div class="dropdown-divider"></div>
+              <input  type="checkbox" value="400" name="cost" id="inlineCheckbox1" class="dropdown-item form-check-input ml-5">
+              <label class="dropdown-item form-check-label disabled" for="inlineCheckbox1">$400</label>
+              <div class="dropdown-divider"></div>
+              <input  type="checkbox" value="300" name="cost" id="inlineCheckbox1" class="dropdown-item form-check-input ml-5">
+              <label class="dropdown-item form-check-label disabled" for="inlineCheckbox1">$300</label>
+              <div class="dropdown-divider"></div>
+              <input  type="checkbox" value="200" name="cost" id="inlineCheckbox1" class="dropdown-item form-check-input ml-5">
+              <label class="dropdown-item form-check-label disabled" for="inlineCheckbox1">$200</label>
+              <div class="dropdown-divider"></div>
+              <input  type="checkbox" value="100" name="cost" id="inlineCheckbox1" class="dropdown-item form-check-input ml-5">
+              <label class="dropdown-item form-check-label disabled" for="inlineCheckbox1">$100</label>
+              
+              
+            </div>
+          </div>
+          <div class="form-group dropdown col-md-4 btn-container">
+
+            <button class="btn btn-secondary dropdown-toggle btn-block borderLess" type="button" id="dropdownMenuButton"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="far fa-star"></i> Rating
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width:370px">
+              <input class="dropdown-item" type="checkbox" name="rating" value="5" id="first-rate5" >
+              <label for="first-rate5"  class="text-center dropdown-item" title="5 stars - Amazing">
+                  <%- "<span class='fa fa-star checked'></span>".repeat(5)%>
+              </label>
+              <div class="dropdown-divider"></div>
+              <input class="dropdown-item " type="checkbox" name="rating" value="4" id="first-rate4" >
+              <label for="first-rate4" class="text-center dropdown-item" title="4 stars - Very good">
+                  <%- "<span class='fa fa-star checked'></span>".repeat(4)%>
+              </label>
+              
+              <div class="dropdown-divider"></div>
+              <input class="dropdown-item " type="checkbox" name="rating" value="3" id="first-rate3" >
+              <label for="first-rate3" class="text-center dropdown-item" title="3 stars - Average">
+                  <%- "<span class='fa fa-star checked'></span>".repeat(3)%>
+              </label>
+
+              <div class="dropdown-divider"></div>
+              <input class="dropdown-item " type="checkbox" name="rating" value="2" id="first-rate2" >
+              <label for="first-rate2" class="text-center dropdown-item" title="2 stars - not good">
+                  <%- "<span class='fa fa-star checked'></span>".repeat(2)%>
+              </label>
+
+              <div class="dropdown-divider"></div>
+              <input class="dropdown-item " type="checkbox" name="rating" value="1" id="first-rate1" >
+              <label for="first-rate1" class="text-center dropdown-item" itle="1 star - terrible">
+                  <%- "<span class='fa fa-star checked'></span>".repeat(1)%>
+              </label>                 
+            </div>
+          </div>
+          <div class="form-group col-md-4 btn-containerN ">
+
+            <button class="btn btn-secondary dropdown-toggle btn-block borderLess" type="button" id="dropdownMenuButton"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-location-arrow"></i> City
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width:370px">
+              <input  type="checkbox" value="Hawally" name="city" id="inlineCheckbox1" class="dropdown-item form-check-input ml-5">
+              <label class="dropdown-item form-check-label disabled" for="inlineCheckbox1">Hawally</label>
+              <div class="dropdown-divider"></div>
+              <input  type="checkbox" value="AL-Farwanya" name="city" id="inlineCheckbox1" class="dropdown-item form-check-input ml-5">
+              <label class="dropdown-item form-check-label disabled" for="inlineCheckbox1">Farwanya</label>
+              <div class="dropdown-divider"></div>
+              <input  type="checkbox" value="Kuwait" name="city" id="inlineCheckbox1" class="dropdown-item form-check-input ml-5">
+              <label class="dropdown-item form-check-label disabled" for="inlineCheckbox1">Kuwait</label>
+              <div class="dropdown-divider"></div>
+              <input  type="checkbox" value="Al-egela" name="city" id="inlineCheckbox1" class="dropdown-item form-check-input ml-5">
+              <label class="dropdown-item form-check-label disabled" for="inlineCheckbox1">Al-egela</label>
+              <div class="dropdown-divider"></div>
+              <input  type="checkbox" value="Sabhan" name="city" id="inlineCheckbox1" class="dropdown-item form-check-input ml-5">
+              <label class="dropdown-item form-check-label disabled" for="inlineCheckbox1">Sabhan</label>
+              <div class="dropdown-divider"></div>
+              <input  type="checkbox" value="Al-jahara" name="city" id="inlineCheckbox1" class="dropdown-item form-check-input ml-5">
+              <label class="dropdown-item form-check-label disabled" for="inlineCheckbox1">Al-jahara</label>
+            </div>
+
+          </div>
+        </div>
+        <div id="accordion" class="align-items-end">
+          <div class="card bg-dark text-white text-center">
+            <div class="card-header">
+              <h5 class="mb-0">
+                <div href="#collapse1" data-toggle="collapse" data-parent="#accordion">
+                  <i class="fas fa-map-marker-alt"></i> Map
+                </div>
+              </h5>
+            </div>
+            <div id="collapse1" class="collapse " style="color:black">
+              <div id="map" class="card-body text-black">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<!--Search items for mobile-->
+<section class="campGroup2 d-block d-md-none ">
+  <div class="container-fluid bg-dark">
+    <div class="container">
+      <form class="form-inline" action="/campgrounds">
+        <input id="searchbarPhone" class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+        <button id="searchButton" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <div class="d-flex d-flex-column align-self-center mb-2 mt-sm-2">
+          <div class="dropdown pr-2 mb-1">
+            <button class="btn btn-primary text-white dropdown-toggle borderLess" type="button" id="dropdownMenuButton0"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="far fa-star"></i> Rating
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width:370px">
+              <input class="dropdown-item" type="checkbox" name="rating" value="5" id="first-rate5m" >
+              <label for="first-rate5m"  class="text-center dropdown-item" title="5 stars - Amazing">
+                  <%- "<span class='fa fa-star checked'></span>".repeat(5)%>
+              </label>
+              <div class="dropdown-divider"></div>
+              <input class="dropdown-item " type="checkbox" name="rating" value="4" id="first-rate4m" >
+              <label for="first-rate4m" class="text-center dropdown-item" title="4 stars - Very good">
+                  <%- "<span class='fa fa-star checked'></span>".repeat(4)%>
+              </label>
+              
+              <div class="dropdown-divider"></div>
+              <input class="dropdown-item " type="checkbox" name="rating" value="3" id="first-rate3m" >
+              <label for="first-rate3m" class="text-center dropdown-item" title="3 stars - Average">
+                  <%- "<span class='fa fa-star checked'></span>".repeat(3)%>
+              </label>
+
+              <div class="dropdown-divider"></div>
+              <input class="dropdown-item " type="checkbox" name="rating" value="2" id="first-rate2m" >
+              <label for="first-rate2m" class="text-center dropdown-item" title="2 stars - not good">
+                  <%- "<span class='fa fa-star checked'></span>".repeat(2)%>
+              </label>
+
+              <div class="dropdown-divider"></div>
+              <input class="dropdown-item " type="checkbox" name="rating" value="1" id="first-rate1m" >
+              <label for="first-rate1m" class="text-center dropdown-item" itle="1 star - terrible">
+                  <%- "<span class='fa fa-star checked'></span>".repeat(1)%>
+              </label>                 
+            </div>
+          </div>
+          <div class="dropdown pr-2 mb-1">
+            <button class="btn btn-danger text-white dropdown-toggle borderLess" type="button" id="dropdownMenuButton1"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="far fa-money-bill-alt"></i> Price
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <input  type="checkbox" value="500" name="cost" id="inlineCheckbox1" class="dropdown-item form-check-input ml-5">
+            <label class="dropdown-item form-check-label disabled" for="inlineCheckbox1">$500</label>
+            <div class="dropdown-divider"></div>
+            <input  type="checkbox" value="400" name="cost" id="inlineCheckbox1" class="dropdown-item form-check-input ml-5">
+            <label class="dropdown-item form-check-label disabled" for="inlineCheckbox1">$400</label>
+            <div class="dropdown-divider"></div>
+            <input  type="checkbox" value="300" name="cost" id="inlineCheckbox1" class="dropdown-item form-check-input ml-5">
+            <label class="dropdown-item form-check-label disabled" for="inlineCheckbox1">$300</label>
+            <div class="dropdown-divider"></div>
+            <input  type="checkbox" value="200" name="cost" id="inlineCheckbox1" class="dropdown-item form-check-input ml-5">
+            <label class="dropdown-item form-check-label disabled" for="inlineCheckbox1">$200</label>
+            <div class="dropdown-divider"></div>
+            <input  type="checkbox" value="100" name="cost" id="inlineCheckbox1" class="dropdown-item form-check-input ml-5">
+            <label class="dropdown-item form-check-label disabled" for="inlineCheckbox1">$100</label>
+            </div>
+          </div>
+          <div class="dropdown pr-2 mb-1">
+            <button class="btn btn-info text-white dropdown-toggle borderLess" type="button" id="dropdownMenuButton2"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-location-arrow"></i> City
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+              <input  type="checkbox" value="Hawally" name="city" id="inlineCheckbox1" class="dropdown-item form-check-input ml-5">
+              <label class="dropdown-item form-check-label disabled" for="inlineCheckbox1">Hawally</label>
+              <div class="dropdown-divider"></div>
+              <input  type="checkbox" value="AL-Farwanya" name="city" id="inlineCheckbox1" class="dropdown-item form-check-input ml-5">
+              <label class="dropdown-item form-check-label disabled" for="inlineCheckbox1">Farwanya</label>
+              <div class="dropdown-divider"></div>
+              <input  type="checkbox" value="Kuwait" name="city" id="inlineCheckbox1" class="dropdown-item form-check-input ml-5">
+              <label class="dropdown-item form-check-label disabled" for="inlineCheckbox1">Kuwait</label>
+              <div class="dropdown-divider"></div>
+              <input  type="checkbox" value="Al-egela" name="city" id="inlineCheckbox1" class="dropdown-item form-check-input ml-5">
+              <label class="dropdown-item form-check-label disabled" for="inlineCheckbox1">Al-egela</label>
+              <div class="dropdown-divider"></div>
+              <input  type="checkbox" value="Sabhan" name="city" id="inlineCheckbox1" class="dropdown-item form-check-input ml-5">
+              <label class="dropdown-item form-check-label disabled" for="inlineCheckbox1">Sabhan</label>
+              <div class="dropdown-divider"></div>
+              <input  type="checkbox" value="Al-jahara" name="city" id="inlineCheckbox1" class="dropdown-item form-check-input ml-5">
+              <label class="dropdown-item form-check-label disabled" for="inlineCheckbox1">Al-jahara</label>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div id="accordion" class="align-items-end">
+      <div class="card bg-dark text-white text-center">
+        <div class="card-header">
+          <h5 class="mb-0">
+            <div href="#collapse1" data-toggle="collapse" data-parent="#accordion">
+              <i class="fas fa-map-marker-alt"></i> Map
+            </div>
+          </h5>
+        </div>
+        <div id="collapse1" class="collapse ">
+          <div id="map2" class="card-body text-lead" style="color:black">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Camp Room grid -->
+<section class="campGroup3 d-none d-md-block ">
+  <div class="container">
+    <nav class="mt-2">
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-grid-tab" data-toggle="tab" href="#nav-grid" role="tab"
+          aria-controls="nav-grid" aria-selected="true">Grid</a>
+        <a class="nav-item nav-link" id="nav-list-tab" data-toggle="tab" href="#nav-list" role="tab" aria-controls="nav-list"
+          aria-selected="false">List</a>
+      </div>
+    </nav>
+  </div>
+
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-grid" role="tabpanel" aria-labelledby="nav-grid-tab">
+      <div class="container">
+
+        <hr>
+        <div class="row">
+          <% for(let i = 0;i<campgrounds.length;i++){%>
+          <div class="mt-sm-3 mt-md-0 mb-2 col-md-4">
+            <div class="card">
+              <img src="<%=campgrounds[i].image%>" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%=campgrounds[i].campName%>
+                </h5>
+                <div>
+                  <%if(campgrounds[i].rating === 0){%>
+                  <em>No reviews yet.</em>
+                  <%} else {%>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star <%if(campgrounds[i].rating>1.5){%>checked<%}%>"></span>
+                  <span class="fa fa-star <%if(campgrounds[i].rating>2.5){%>checked<%}%>"></span>
+                  <span class="fa fa-star <%if(campgrounds[i].rating>3.5){%>checked<%}%>"></span>
+                  <span class="fa fa-star <%if(campgrounds[i].rating>4.5){%>checked<%}%>"></span>
+                  <%}%>
+                </div>
+                <blockquote class="card-bodyquote">
+                  <%=campgrounds[i].owner.firstName%>
+                  <%=campgrounds[i].owner.lastName%>
+                  <footer class="blockquote-footer">
+                    <small>
+                      <a href="/profile/<%=campgrounds[i].owner.id%>">
+                        <%=campgrounds[i].owner.username%></a>
+                    </small>
+                  </footer>
+                </blockquote>
+                <p class="card-text">
+                  <%=campgrounds[i].campDescription.substring(0,100)%>
+                </p>
+                <div class="d-flex justify-content-between">
+                  <a href="/campgrounds/<%=campgrounds[i]._id%>" class="btn btn-outline-primary">View</a>
+                  <div class="font-weight-bold align-self-center">$
+                    <%=campgrounds[i].cost%>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer text-center text-muted">
+                <%=moment(campgrounds[i].createdAt).fromNow()%>
+              </div>
+            </div>
+          </div>
+          <%}%>
+        </div>
+      </div>
+    </div>
+    <!-- List start here -->
+    <div class="tab-pane fade" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab">
+      <div class="container">
+        <hr>
+        <% for(let i = 0;i<campgrounds.length;i++){%>
+        <div class="card mb-2">
+          <div class="d-flex">
+            <div class="col-sm-4 flex-fill p-0 cardMobile">
+              <img src="<%=campgrounds[i].image%>" class="card-img-top img-fluid" style="height:100%" alt="...">
+            </div>
+            <div class="card-body">
+              <div class="d-flex-column">
+                <div class=" d-flex-row ml-2">
+                  <small class="float-right d-none d-sm-block">
+                    <%=moment(campgrounds[i].createdAt).fromNow()%></small>
+                  <h5 class="card-title">
+                    <%=campgrounds[i].campName%>
+                  </h5>
+                  <small class="d-block d-sm-none">
+                    <%=moment(campgrounds[i].createdAt).fromNow()%></small>
+                  <div>
+                    <%if(campgrounds[i].rating === 0){%>
+                    <em>No reviews yet.</em>
+                    <%} else {%>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star <%if(campgrounds[i].rating>1.5){%>checked<%}%>"></span>
+                    <span class="fa fa-star <%if(campgrounds[i].rating>2.5){%>checked<%}%>"></span>
+                    <span class="fa fa-star <%if(campgrounds[i].rating>3.5){%>checked<%}%>"></span>
+                    <span class="fa fa-star <%if(campgrounds[i].rating>4.5){%>checked<%}%>"></span>
+                    <%}%>
+                  </div>
+                  <blockquote class="card-bodyquote">
+                    <%=campgrounds[i].owner.firstName%>
+                    <%=campgrounds[i].owner.lastName%>
+                    <footer class="blockquote-footer">
+                      <small>
+                        <a href="/profile/<%=campgrounds[i].owner.id%>">
+                          <%=campgrounds[i].owner.username%></a>
+                      </small>
+                    </footer>
+                  </blockquote>
+                </div>
+                <div class="p-2 d-none d-sm-block ml-2">
+                  <p class="card-text">
+                    <%=campgrounds[i].campDescription.substring(0,100)%>
+                  </p>
+                </div>
+                <div class="p-2 d-flex justify-content-between ml-2 ">
+                  <a href="/campgrounds/<%=campgrounds[i]._id%>" class="btn btn-outline-success mr-2  ">View</a>
+                  <span class="font-weight-bold align-self-center">$
+                    <%=campgrounds[i].cost%></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%}%>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- mobile List start here -->
+<section class="campRoomList d-sm-block d-md-none mt-2">
+  <div class="container">
+    <%campgrounds.forEach(function(camp){%>
+    <div class="card mt-2">
+      <div class="d-flex">
+        <div class="col-sm-4 flex-fill p-0 cardMobile">
+          <img src="<%=camp.image%>" class="card-img-top img-fluid" style="height:100%" alt="...">
+        </div>
+        <div class="card-body">
+          <div class="d-flex-column">
+            <div class=" d-flex-row ml-2">
+              <small class="float-right d-none d-sm-block">
+                <%=moment(camp.createdAt).fromNow()%></small>
+              <h5 class="card-title">
+                <%=camp.campName%>
+              </h5>
+              <small class="d-block d-sm-none">
+                <%=moment(camp.createdAt).fromNow()%></small>
+              <div>
+                <%if(camp.rating === 0){%>
+                <em>No reviews yet.</em>
+                <%} else {%>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star <%if(camp.rating>1.5){%>checked<%}%>"></span>
+                <span class="fa fa-star <%if(camp.rating>2.5){%>checked<%}%>"></span>
+                <span class="fa fa-star <%if(camp.rating>3.5){%>checked<%}%>"></span>
+                <span class="fa fa-star <%if(camp.rating>4.5){%>checked<%}%>"></span>
+                <%}%>
+              </div>
+              <blockquote class="card-bodyquote">
+                <%=camp.owner.firstName%>
+                <%=camp.owner.lastName%>
+                <footer class="blockquote-footer">
+                  <small>
+                    <a href="/profile/<%=camp.owner.id%>">
+                      <%=camp.owner.username%></a>
+                  </small>
+                </footer>
+              </blockquote>
+            </div>
+            <div class="p-2 d-none d-sm-block ml-2">
+              <p class="card-text">
+                <%=camp.campDescription.substring(0,100)%>
+              </p>
+            </div>
+            <div class="p-2 d-flex justify-content-between ml-2 ">
+              <a href="/campgrounds/<%=camp._id%>" class="btn btn-outline-success mr-2">View</a>
+              <span class="font-weight-bold align-self-center">$<%=camp.cost%></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <%})%>
+  </div>
+</section>
+
+
+<script>
+  function initMap() {
+    var location = [];
+    <%campgrounds.forEach(function(camp){%>
+    var lat = <%= camp.lat %>;
+    var lng = <%= camp.lng %>;
+    var info =
+      `
+        <img src="<%=camp.image%>" class="rounded" style="Width:75px" alt="..."><br/>
+        <strong><%= camp.campName %><br/>
+        <%= camp.location %></strong>
+        <p><%= camp.campDescription.substring(0,100) %></p>
+        <p class="font-weight-bold text-center">$<%=camp.cost%></p>
+        <a href="/campgrounds/<%=camp._id%>" class="btn btn-sm btn-outline-success mx-auto">View</a>
+      `
+    var center = {
+      lat: lat,
+      lng: lng,
+      info: info
+    };
+    location.push(center)
+    <%})%>
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: new google.maps.LatLng(29.3294754, 48.054831),
+      scrollwheel: false,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var map2 = new google.maps.Map(document.getElementById('map2'), {
+      zoom: 10,
+      center: new google.maps.LatLng(29.3294754, 48.054831),
+      scrollwheel: false,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow({});
+    var marker, i, marker2
+    for (i = 0; i < location.length; i++) {
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(location[i].lat, location[i].lng),
+        map: map
+      });
+
+      marker2 = new google.maps.Marker({
+        position: new google.maps.LatLng(location[i].lat, location[i].lng),
+        map: map2
+      });
+
+      google.maps.event.addListener(marker, 'click', (function (marker, i) {
+        return function () {
+          infowindow.setContent(location[i].info);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+
+      google.maps.event.addListener(marker2, 'click', (function (marker2, i) {
+        return function () {
+          infowindow.setContent(location[i].info);
+          infowindow.open(map2, marker2);
+        }
+      })(marker2, i));
+    }
+
+  }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0244ht03QAp8hFFmFBpUJL2RoSb6tPhM&callback=initMap"></script>
+
+
+<% include ../partials/footer%>

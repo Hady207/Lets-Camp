@@ -1,0 +1,343 @@
+<% include ../partials/header%>
+<!-- START HERE -->
+
+<section class="d-none d-md-block headGroup1  pt-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card">
+          <!--avatar will be here along with hover effect to change to picture in the future-->
+          <img src="<%=user.avatar.url%>"
+            alt="" class="card-img-top img-round">
+          <div class="card-body">
+            <h5 class="card-text display-5">
+              <%=user.firstName%>
+              <%=user.lastName%>
+            </h5>
+            <p class="card-bodyquote">
+              <%=user.username%>
+            </p>
+            <p class="card-bodyquote">
+              <%=user.email%>
+            </p>
+            <p class="card-text lead">Followers: <span>
+                 <%=user.followers.length%></span></p>
+            <p class="card-text lead">Campgrounds: <span>
+                <%=campgrounds.length%></span></p>
+            <div class="d-flex justify-content-between">
+            <%if(currentUser && user._id.equals(currentUser.id)){%>
+            <a class="btn btn-primary" href="/profile/<%=user._id%>/edit">Update Profile</a>
+            <%} else {%>
+              <%if(currentUser && user.followers.some(function(follow){
+                return follow.equals(currentUser._id)
+              })) { %>
+              <a href="/follow/<%=user.id%>" class="btn btn-danger">Unfollow</a>
+              <%} else {%>
+              <a href="/follow/<%=user.id%>" class="btn btn-success">Follow</a>
+              <%}%>
+              <%}%>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <!--<li class="list-group-item list-group-item-action"><a class="nav-link" id="list-home-list" data-toggle="list"
+                href="#list-home" role="tab" aria-controls="home"><i class="fas fa-home"></i> Home</a></li>-->
+            <li class="list-group-item list-group-item-action"><a class="nav-link" id="list-reviews-list" data-toggle="list"
+                href="#list-reviews" role="tab" aria-controls="reviews"><i class="fas fa-pen-square"></i> Reviews <span class="badge badge badge-primary"><%=reviews.length%></span>
+                </a></li>
+            <li class="list-group-item list-group-item-action"><a class="nav-link" id="list-camps-list" data-toggle="list"
+                href="#list-camps" role="tab" aria-controls="camps"><i class="fas fa-campground"></i> Camps <span class="badge badge badge-primary"><%=campgrounds.length%></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="container tab-content" id="nav-tabContent">
+          <!--<div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">Lorem
+          </div>-->
+          <div class="tab-pane fade show active " id="list-reviews" role="tabpanel" aria-labelledby="list-reviews-list">
+            <%if(!reviews || !reviews.length){%>
+            <p>No reviews here</p>
+            <%} else {%>
+            <%reviews.forEach(function(review){%>
+            <div class="card mb-2">
+              <div class="card-header font-weight-italic">Review for <a class="card-link" href="/campgrounds/<%=review.campground.id%>/"><%=review.campground.campName%></a></div>
+              <div class="card-body">
+                <div class="card-title d-flex">
+                  <span><img src="<%=review.author.avatar%>" width="75" height=75 alt="..." class="rounded"></span>
+                  <div class="d-flex-column ml-3">
+                    <h5 class="align-self-start">
+                      <%=review.title%>
+                    </h5>
+                    <div class="mb-2">
+                    <%- '<span class="fa fa-star checked"></span>'.repeat(review.rating)%><%- '<span class="fa fa-star"></span>'.repeat(5-review.rating)%>
+                    </div>
+                    <h6 class="align-self-end text-muted card-subtitle">
+                      <%=review.author.firstName + " " + review.author.lastName%>
+                    </h6>
+                  </div>
+                </div>
+                <p class="card-text">
+                  <%=review.body%>
+                </p>
+                <%if(currentUser && review.author.id.equals(currentUser._id)){%>
+                <form action="/campgrounds/<%=review.campground.id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                  <button type="submit" class="btn btn-danger float-right ml-2">Delete</button>
+                </form>
+                <a href="/campgrounds/<%=review.campground.id%>/reviews/<%=review._id%>/edit" class="btn btn-warning float-right">Edit</a>
+                <%}%>
+                </div>
+              <div class="card-footer text-center text-muted">
+              <%=moment(review.createdAt).fromNow()%>
+              </div>
+            </div>
+            <%})%>
+            <%}%>
+          </div>
+          <div class="tab-pane fade" id="list-camps" role="tabpanel" aria-labelledby="list-camps-list">
+            <nav class="mt-2">
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-grid-tab" data-toggle="tab" href="#nav-grid" role="tab"
+                  aria-controls="nav-grid" aria-selected="true">Grid</a>
+                <a class="nav-item nav-link" id="nav-list-tab" data-toggle="tab" href="#nav-list" role="tab"
+                  aria-controls="nav-list" aria-selected="false">List</a>
+              </div>
+            </nav>
+            <!--Camps grid  -->
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-grid" role="tabpanel" aria-labelledby="nav-grid-tab">
+              <%if(!campgrounds || !campgrounds.length){%>
+            <p>You don't own any campground</p>
+            <%} else {%>
+                <div class="row">
+                  <%campgrounds.forEach(function(camp){%>
+                  <div class="mt-sm-3 mt-md-0 col-md-4">
+                    <div class="card mt-2">
+                      <img src="<%=camp.image%>" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title">
+                          <%=camp.campName%>
+                        </h5>
+                        <div class="mb-2">
+                        <%if(camp.rating === 0){%>
+                        <em>No reviews yet.</em>
+                        <%} else {%>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star <%if(camp.rating>1.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(camp.rating>2.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(camp.rating>3.5){%>checked<%}%>"></span>
+                        <span class="fa fa-star <%if(camp.rating>4.5){%>checked<%}%>"></span>
+                        <%}%>
+                        </div>
+                        <blockquote class="card-bodyquote">
+                          <%=camp.owner.firstName + " " + camp.owner.lastName%>
+                          <footer class="blockquote-footer">
+                            <small>
+                              <%=camp.owner.username%>
+                            </small>
+                          </footer>
+                        </blockquote>
+                        <p class="card-text">
+                          <%=camp.campDescription.substring(0,100)%>
+                        </p>
+                        <div class="d-flex justify-content-between">
+                          <a href="/campgrounds/<%=camp._id%>" class="btn btn-outline-primary">View</a>
+                          <div class="font-weight-bold align-self-center">$
+                            <%=camp.cost%>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer text-center text-muted">
+                        <%=moment(camp.createdAt).fromNow()%>
+                      </div>
+                    </div>
+                  </div>
+                  <%})%>
+                </div>
+                <%}%>
+              </div>
+            <!-- List start here -->
+            <div class="tab-pane fade" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab">
+              <div class="container">
+                <hr>
+                <%campgrounds.forEach(function(camp){%>
+                <div class="card mb-2">
+                  <div class="d-flex">
+                    <div class="col-sm-4 flex-fill p-0 cardMobile">
+                      <img src="<%=camp.image%>"
+                        class="card-img-top img-fluid" style="height:100%" alt="...">
+                    </div>
+                    <div class="card-body">
+                      <div class="d-flex-column">
+                        <div class=" d-flex-row ml-2">
+                          <small class="float-right d-none d-sm-block"><%=moment(camp.createdAt).fromNow()%></small>
+                          <h5 class="card-title"><%=camp.campName%></h5>
+                          <small class="d-block d-sm-none"><%=moment(camp.createdAt).fromNow()%></small>
+                          <div>
+                          <%if(camp.rating === 0){%>
+                          <em>No reviews yet.</em>
+                          <%} else {%>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star <%if(camp.rating>1.5){%>checked<%}%>"></span>
+                          <span class="fa fa-star <%if(camp.rating>2.5){%>checked<%}%>"></span>
+                          <span class="fa fa-star <%if(camp.rating>3.5){%>checked<%}%>"></span>
+                          <span class="fa fa-star <%if(camp.rating>4.5){%>checked<%}%>"></span>
+                          <%}%>
+                          </div>
+                          <blockquote class="card-bodyquote"><%=camp.owner.firstName + " " + camp.owner.lastName%>
+                            <footer class="blockquote-footer">
+                              <small>
+                                <a href="#"><%=camp.owner.username%></a>
+                              </small>
+                            </footer>
+                          </blockquote>
+                        </div>
+                        <div class="p-2 d-none d-sm-block ml-2">
+                          <p class="card-text"> <%=camp.campDescription.substring(0,100)%></p>
+                        </div>
+                        <div class="p-2 d-flex justify-content-between ml-2 ">
+                          <a href="/campgrounds/<%=camp._id%>" class="btn btn-outline-success mr-2  ">View</a>
+                          <span class="font-weight-bold align-self-center">$<%=camp.cost%></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <%})%>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--Mobile profile-->
+<nav class="d-block d-md-none navbar navbar-expand navbar-dark bg-dark" style="opacity:1;">
+  <div class="container">
+    <a class=" navbar-brand dropdown-toggle "  id="navbarDropdownMenuLink" role="button"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><img src="<%=user.avatar.url%>"
+        alt="..." class="rounded-circle miniProfile" height="30" width="30">
+      <%=user.firstName%>
+      <%=user.lastName%></a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+      <a class="dropdown-header" href="#" readonly>
+        <%=user.username%></a>
+      <%if(currentUser && currentUser.id == user.id){%>
+      <a class="dropdown-item" href="/profile/<%=user._id%>/edit">Update Profile</a>
+      <a class="dropdown-item" href="/logout">Log Out</a>
+      <%}%>
+    </div>
+    <div class="navbar-nav mr-auto mt-2 mt-lg-0" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link text-white" href="#camp">Camps<span class="badge badge-pill badge-light"><%=campgrounds.length%></span></a>
+      <a class="nav-item nav-link text-white" href="#review">Reviews<span class="badge badge-pill badge-light"><%=reviews.length%></span></a>
+      <%if(currentUser && user.followers.some(function(follow){
+                return follow.equals(currentUser._id)
+              })) { %>
+              <a class="nav-item nav-link text-white" href="/follow/<%=user.id%>">Unfollow<span class="badge badge-pill badge-light"><%=user.followers.length%></span></a>
+              <%} else {%>
+              <a class="nav-item nav-link text-white" href="/follow/<%=user.id%>">Follow<span class="badge badge-pill badge-light"><%=user.followers.length%></span></a>
+              <%}%>
+      
+    </div>
+  </div>
+</nav>
+
+
+<section class="camp-cards-for-phone mt-2 d-block d-md-none" id="camp">
+  <div class="container">
+    <p class="display-5 lead">Your Camps Section</p>
+    <%campgrounds.forEach(function(camp){%>
+    <div class="card mt-2">
+      <div class="d-flex">
+        <div class="col-sm-4 flex-fill p-0 cardMobile">
+          <img src="<%=camp.image%>" class="card-img-top img-fluid" style="height:100%" alt="...">
+        </div>
+        <div class="card-body">
+          <div class="d-flex-column">
+            <div class=" d-flex-row ml-2">
+              <small class="float-right d-none d-sm-block">5 minutes ago</small>
+              <h5 class="card-title">
+                <%=camp.campName%>
+              </h5>
+              <small class="d-block d-sm-none">
+              <%=moment(camp.createdAt).fromNow()%></small>
+              <div>
+              <%if(camp.rating === 0){%>
+              <em>No reviews yet.</em>
+              <%} else {%>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star <%if(camp.rating>1.5){%>checked<%}%>"></span>
+              <span class="fa fa-star <%if(camp.rating>2.5){%>checked<%}%>"></span>
+              <span class="fa fa-star <%if(camp.rating>3.5){%>checked<%}%>"></span>
+              <span class="fa fa-star <%if(camp.rating>4.5){%>checked<%}%>"></span>
+              <%}%>
+              </div>
+              <!-- <blockquote class="card-bodyquote">Hady Maher
+                <footer class="blockquote-footer">
+                  <small>
+                    Hady207@hotmail.com
+                  </small>
+                </footer>
+              </blockquote> -->
+            </div>
+            <div class="p-2 d-none d-sm-block ml-2">
+              <p class="card-text">
+                <%=camp.campDescription.substring(0,100)%>
+              </p>
+            </div>
+            <div class="p-2 d-flex justify-content-between ml-2 ">
+              <a href="/campgrounds/<%=camp._id%>" class="btn btn-outline-success mr-2">View</a>
+              <span class="font-weight-bold align-self-center">$100</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <%})%>
+  </div>
+</section>
+
+
+<!--Mobile reviews section-->
+<section class="mt-2 d-block d-md-none" id="review">
+  <div class="container">
+    <p class="lead">Your Reviews Section</p>
+    <div class="row ">
+      <%reviews.forEach(function(review){%>
+      <div class="card w-100 flex-fill mt-2">
+        <div class="card-header">Review for <a class="card-link" href="/campgrounds/<%=review.campground.id%>/"><%=review.campground.campName%></a></div>
+        <div class="card-body">
+          <div class="card-title d-flex">
+            <span><img src="<%=review.author.avatar%>" width="75" height="75" alt="..." class="rounded"></span>
+            <div class="d-flex-column ml-3">
+              <h5 class="align-self-start">
+                <%=review.title%>
+              </h5>
+              <div class="mb-2">
+              <%- '<span class="fa fa-star checked"></span>'.repeat(review.rating)%><%- '<span class="fa fa-star"></span>'.repeat(5-review.rating)%>
+              </div>
+              <h6 class="align-self-center text-muted card-subtitle"><%=review.author.firstName%> <%=review.author.lastName%> , <%=moment(review.createdAt).fromNow()%></h6>
+            </div>
+          </div>
+          <p class="card-text">
+            <%=review.body%>
+          </p>
+          
+          <%if(currentUser && review.author.id.equals(currentUser._id)){%>
+            <form action="/campgrounds/<%=review.campground.id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+              <button type="submit" class="btn btn-danger float-right ml-2">Delete</button>
+            </form>
+            <a href="/campgrounds/<%=review.campground.id%>/reviews/<%=review._id%>/edit" class="btn btn-warning float-right">Edit</a>
+          <%}%>
+          </div>
+        
+      </div>
+    </div>
+    <%})%>
+  </div>
+  </div>
+</section>
+
+
+<% include ../partials/footer%>

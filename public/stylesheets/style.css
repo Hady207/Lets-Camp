@@ -1,0 +1,296 @@
+body{
+    background: #f5f5f5;
+}
+.editable {
+    display: inline-block;
+    max-width: 100%;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, .15)
+}
+.navbar {
+    opacity: 0.9;
+    border-bottom: #205cbc 3px solid;
+    font-family: "Roboto";
+
+}
+/* user pic on the navbar */
+.miniProfile{
+    height: 24px;
+    left: 2px;
+    top: 2px;
+    width: 24px;
+}
+/* dont conflect with the acitve bootstrab class */
+.activeh {
+    border-bottom: red 2px solid
+}
+
+/* Homepage Style  */
+
+#showcase {
+    position: relative;
+    /* background: url("https://images.unsplash.com/photo-1506219033545-98584395b982?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80") no-repeat; */
+    background: url("https://images.unsplash.com/photo-1520515148174-24eb6de39f21?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80") no-repeat;
+    min-height: 600px;
+    background-size: cover
+}
+
+.headGroup1 {
+    background: #f5f5f5;
+}
+
+
+#homeGroup2Title {
+    margin-top: 80px;
+    font-family: "oswald"
+}
+
+#homeGroup1Jumbotron {
+    margin-top: 75px;
+}
+
+#homeGroup3title,
+#homeGroup4title {
+    font-family: "oswald";
+}
+
+.homeGroup3 .card-header{
+    font-family: 'Lato'
+}
+
+/* for the accordion in the  */
+#wordAccordion {
+    font-family: "Roboto";
+    font-weight: bold;
+    /* font-style: italic; */
+}
+/* for all accordion */
+#accordion{
+    cursor: pointer;
+}
+
+
+
+/* #firstAnime:hover{
+    opacity:0;
+    transition-property: opacity;
+    transition-timing-function: ease-in;
+    transition-duration: 0.5s;
+    transition-delay: 0.4s;
+} */
+
+
+/* not used  */
+#showcase .primary-overlay {
+    /* background: rgba(50, 146, 255, 0.8); */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+	background: rgba(0,0,0,0.7);
+}
+
+
+
+/* pop animation for the the latest reviews in the hompage */
+#popUp:hover {
+    transition-property: box-shadow;
+    transition-duration: 2s;
+
+    box-shadow: 5px 1px 5px 3px
+}
+
+#popUP:active {
+    box-shadow: 0 0;
+    top: 6px;
+    cursor: pointer;
+}
+
+/* section .btn{
+    width: 80px;
+    text-align: center;
+    text-transform: capitalize;
+} */
+
+/* ==================================== */
+/* Camp room page css */
+#search-bar {
+    width: 78%;
+    margin-left: 7%;
+}
+
+.dropdown button{
+    font-family: "Roboto";
+    
+}
+
+#listPhone {
+    padding: 0px 3px 0px 0px;
+}
+
+#sortBar {
+    background-color: #37454d;
+}
+
+.borderLess {
+    border: none;
+    background: #343a40;
+    text-transform: capitalize;
+}
+
+.btn-containerN {
+    padding: 12px 100px;
+}
+
+.btn-container {
+    padding: 12px 100px;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+}
+
+/* a style for the file input in the signUP page */
+#alignments {
+    width: 95.5;
+    margin-left: 15px;
+}
+
+/* Style for flash messages */
+
+#flash {
+    position: fixed;
+    top: 60px;
+    left: 1%;
+    right: 1%;
+    z-index: 2;
+    border: 1px solid grey;
+    opacity: 0.9;
+}
+
+/* Google Maps */
+/* desktop Map */
+#map {
+    height: 400px;
+    width: 100%;
+}
+
+/* mobile Map */
+#map2 {
+    height: 400px;
+    width: 100%;
+}
+
+/* star reviews */
+.checked{
+    color:orange;
+}
+
+/* star slider */
+form .stars {
+    background: url("../img/stars.png") repeat-x 0 0;
+    width: 150px;
+    margin: 0 auto;
+  }
+  
+  form .stars input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    filter: alpha(opacity=0);
+  }
+  form .stars input[type="radio"].star-5:checked ~ span {
+    width: 100%;
+  }
+  form .stars input[type="radio"].star-4:checked ~ span {
+    width: 80%;
+  }
+  form .stars input[type="radio"].star-3:checked ~ span {
+    width: 60%;
+  }
+  form .stars input[type="radio"].star-2:checked ~ span {
+    width: 40%;
+  }
+  form .stars input[type="radio"].star-1:checked ~ span {
+    width: 20%;
+  }
+  form .stars label {
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 0!important;
+    padding: 0!important;
+    text-indent: -999em;
+    float: left;
+    position: relative;
+    z-index: 10;
+    background: transparent!important;
+    cursor: pointer;
+  }
+  form .stars label:hover ~ span {
+    background-position: 0 -30px;
+  }
+  form .stars label.star-5:hover ~ span {
+    width: 100% !important;
+  }
+  form .stars label.star-4:hover ~ span {
+    width: 80% !important;
+  }
+  form .stars label.star-3:hover ~ span {
+    width: 60% !important;
+  }
+  form .stars label.star-2:hover ~ span {
+    width: 40% !important;
+  }
+  form .stars label.star-1:hover ~ span {
+    width: 20% !important;
+  }
+  form .stars span {
+    display: block;
+    width: 0;
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 30px;
+    background: url("../img/stars.png") repeat-x 0 -60px;
+    -webkit-transition: -webkit-width 0.5s;
+    -moz-transition: -moz-width 0.5s;
+    -ms-transition: -ms-width 0.5s;
+    -o-transition: -o-width 0.5s;
+    transition: width 0.5s;
+  }
+
+@media (max-width: 768px) {
+    #showcase {
+        min-height: 500px;
+    }
+
+    #searchbarPhone{
+        width: 75%;
+        
+    }
+    #searchButton{
+        margin-left:2%; 
+    }
+    .active{
+        width: 50%
+    }
+
+    #showcase h1 {
+        font-size: 4rem;
+    }
+
+    .mb-resp {
+        margin-bottom: 1rem;
+    }
+
+    .dad {
+        background-position: top center;
+        background-size: cover;
+        position: absolute;
+        bottom:0;
+        top: 0;
+        left: 0;
+        right:0;
+        width: 100%;
+        height: auto;  
+      }
+}

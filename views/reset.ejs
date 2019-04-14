@@ -1,0 +1,29 @@
+<% include partials/header%>
+<link rel="stylesheet" type="text/css" href="/stylesheets/signupstyle.css">
+
+
+<section>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4 text-center">Change your password</h1>
+            <p class="lead text-center">Signing up gives you the power to book camps and write your own reviews.</p>
+        </div>
+    </div>
+</section>
+
+<section class="signUP mt-4">
+<div class="container">
+    <form class="form-signin" action="/reset/<%=token%>" method="POST" autocomplete="off">
+        <div class="form-group ">
+            <input type="password" class="form-control" name="password" placeholder="New Password" required>
+        </div>
+
+        <div class="form-group ">
+            <input type="password" class="form-control" name="confirm" placeholder="Confirm Password" required>
+        </div>
+        
+        <input type="submit" class="btn btn-outline-success" value="Update Password">
+    </form>
+</div>
+
+<% include partials/footer%>
