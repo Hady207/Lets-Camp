@@ -29,8 +29,8 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 //mongodb+srv://hady:hady@cluster0-01fm4.mongodb.net/test?retryWrites=true
-var url = "mongodb://localhost:27017/letsCamp_appv1"||process.env.LETCAMPDB;
-mongoose.connect(process.env.LETCAMPDB, {useNewUrlParser: true});
+var url = process.env.LETCAMPDB||"mongodb://localhost:27017/letsCamp_appv1";
+mongoose.connect(url, {useNewUrlParser: true});
 app.use(flash());
 app.use(cookieParser());
 
@@ -74,6 +74,6 @@ app.use(profileRoutes);
 
 
 // open the server
-app.listen(3000, function () {
-    console.log("Server has started");
-});
+// app.listen(3000, function () {
+//     console.log("Server has started");
+// });
