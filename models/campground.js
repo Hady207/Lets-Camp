@@ -22,17 +22,6 @@ var campgroundSchema = new mongoose.Schema({
         month:{type:String,default:"Month"},
         day:Number
     },
-    // booking:[
-    //     {
-    //         month:{type:String,default:"Month"},
-    //         day:Number,
-    //         from:Number,
-    //         to:Number,
-    //         byfirstName:String, 
-    //         bylastName:String, 
-    //         byphoneNumber:String, 
-    //     }
-    // ],
     likes:[
         {
             type:mongoose.Schema.Types.ObjectId,

@@ -49,8 +49,6 @@ var geocoder = NodeGeocoder(options);
 
 //Show - campgrounds on the DB
 router.get("/", function (req, res) {
-    //Campground.find({$or: [{name: regex,}, {location: regex}, {"author.username":regex}]}
-    
     if(req.query.search){
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
         const cost = req.query.cost;
@@ -146,7 +144,7 @@ router.post("/", middleware.isLoggedIn, upload.array('images',4), function (req,
         email:req.user.email
     }
 
-    console.log("form body", req.body.Camp)
+    
 
     // adding the map information to the database
     geocoder.geocode(req.body.Camp.location,async function (err, data) {
@@ -186,7 +184,6 @@ router.post("/", middleware.isLoggedIn, upload.array('images',4), function (req,
             }
         
             //redirect back to campgrounds page
-        
             res.redirect(`/campgrounds/${campground.id}`);
             } catch(err) {
             req.flash('error', err.message);
@@ -230,20 +227,6 @@ router.get("/:id/booking", middleware.isLoggedIn, function (req, res) {
 });
 
 router.post("/:id/booking",async function (req, res) {
-    // var booking = {
-    //     month: req.body.month,
-    //     day: req.body.day
-    // };
-
-    // Campground.findById(req.params.id, function (err, foundCamp) {
-    //     if (err) {
-    //         console.log(err)
-    //     } else {
-    //         foundCamp.booking = booking;
-    //         foundCamp.save()
-    //         res.redirect("/campgrounds/" + req.params.id)
-    //     }
-    // });
     var camp = await Campground.findById(req.params.id)
 
     var smtpTransport = nodemailer.createTransport({
@@ -280,8 +263,6 @@ router.post("/:id/booking",async function (req, res) {
 
 
 
-
-
 //Edit Route for Campgrounds
 router.get("/:id/edit", middleware.checkCampOwner, function (req, res) {
     Campground.findById(req.params.id, function (err, foundCamp) {
@@ -290,6 +271,7 @@ router.get("/:id/edit", middleware.checkCampOwner, function (req, res) {
         })
     });
 });
+
 
 //Update Route for Campgrounds
 router.put("/:id", middleware.checkCampOwner, upload.array('images',4), async function (req, res) {

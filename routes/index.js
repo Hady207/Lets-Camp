@@ -53,7 +53,7 @@ router.get("/", function(req, res) {
   });
 });
 
-
+//show all the reviews in the DB in one page 
 router.get("/reviews",function(req,res){
   Review.find({}).populate("likes").exec(function(err,foundreivew){
       if(err){
@@ -106,50 +106,12 @@ router.post("/register", upload.single("avatar"), async function(req, res) {
 });
 
   
-// router.post("/register", upload.single("avatar"), function(req, res) {
-//   var newUser = new User({
-//     username: req.body.username,
-//     firstName: req.body.firstname,
-//     lastName: req.body.lastname,
-//     email: req.body.username
-//   });
-//   cloudinary.uploader.upload(req.file.path, function(result) {
-//     // add cloudinary url for the avatar to the newUser object under avatar property
-//     newUser.avatar = result.secure_url;
-//     // add image's public_id to newUser  object
-//     newUser.avatar_Id = result.public_id;
-
-//     User.register(newUser, req.body.password, function(err, user) {
-//       if (err) {
-//         console.log(err);
-//         return res.render("register", { error: err.message });
-//       }
-//       passport.authenticate("local")(req, res, function() {
-//         req.flash(
-//           "success",
-//           "Welcome to Kuwait Campground " +
-//             req.body.firstname +
-//             " " +
-//             req.body.lastname
-//         );
-//         res.redirect("/campgrounds");
-//       });
-//     });
-//   });
-// });
 
 //Show login form
 router.get("/login", function(req, res) {
   res.render("login");
 });
 
-//handling login logic
-// router.post("/login",passport.authenticate("local",{
-//     successRedirect:"/campgrounds",
-//     failureRedirect:"/login"
-// }),function(req,res){
-
-// });
 
 router.post("/login", function(req, res, next) {
   // run passport.authenticate method with local argument
