@@ -1,7 +1,6 @@
 var mongoose = require("mongoose");
 
-
-
+// properties of the campground database
 var campgroundSchema = new mongoose.Schema({
     campName:String,
     images:[{ url:String, public_id:String}],

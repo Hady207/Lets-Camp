@@ -7,21 +7,6 @@ var Notification = require("../models/notification");
 var passport = require("passport");
 var middleware = require("../middleware")
 
-//index
-// router.get("/", function (req, res) {
-//     Campground.findById(req.params.id).populate({
-//         path: "reviews",
-//         options: {sort: {createdAt: -1}} // sorting the populated reviews array to show the latest first
-//     }).exec(function (err, campground) {
-//         if (err || !campground) {
-//             req.flash("error", err.message);
-//             return res.redirect("back");
-//         }
-//         res.render("reviews/index", {campground: campground});
-//     });
-// });
-
-
 // Reviews New
 router.get("/new",middleware.isLoggedIn,middleware.checkReviewExist,function(req,res){
     //find campground by id
@@ -93,7 +78,9 @@ router.post("/:review_id/like",middleware.isLoggedIn,function(req,res){
                 campgroundId: req.params.id,
                 message:"Liked your Review"
             }
+            //find the user and populate its followers array
             let user = await User.findById(req.user._id).populate('followers').exec();
+            // create a new notifications and push it to the array
             for(const follower of user.followers) {
                 let notification = await Notification.create(newNotification);
                 follower.notifications.push(notification);
@@ -149,13 +136,14 @@ router.put("/:review_id", middleware.checkAuthor, function (req, res) {
     });
 });
 
-// Reviews Delete
+// Reviews Delete route
 router.delete("/:review_id",middleware.checkAuthor,function(req,res){
     Review.findByIdAndDelete(req.params.review_id,function(err){
         if(err){
             req.flash("error","Deletion couldn't be compeleted")
             res.redirect("/campgrounds/"+req.params.id);
         }
+        // find all the campgrounds and remove the reviews associated to it
         Campground.findByIdAndUpdate(req.params.id,{$pull:{reviews:req.params.review_id}},{new:true}).populate("review").exec(function(err,campground){
             if(err){
                 req.flash("error",err.message);

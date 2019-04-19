@@ -50,6 +50,7 @@ var geocoder = NodeGeocoder(options);
 //Show - campgrounds on the DB
 router.get("/", function (req, res) {
     if(req.query.search){
+        //fuzzy search queries 
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
         const cost = req.query.cost;
         const rating =  req.query.rating;
@@ -226,6 +227,7 @@ router.get("/:id/booking", middleware.isLoggedIn, function (req, res) {
     });
 });
 
+// send email after booking
 router.post("/:id/booking",async function (req, res) {
     var camp = await Campground.findById(req.params.id)
 
@@ -248,7 +250,7 @@ router.post("/:id/booking",async function (req, res) {
           "\n\n" +
           "Thank you for choosing LetsCamp.\n"
       };
-
+    // email sent confirmation 
     smtpTransport.sendMail(mailOptions, function(err) {
         console.log("mail sent");
         req.flash(
@@ -314,6 +316,7 @@ router.put("/:id", middleware.checkCampOwner, upload.array('images',4), async fu
                     req.flash('error', 'Invalid address');
                     return res.redirect('back');
                 }
+                // edit the campground data
                 campground.lat = data[0].latitude;
                 campground.lng = data[0].longitude;
                 campground.location = data[0].formattedAddress;
@@ -363,7 +366,7 @@ router.delete("/:id", middleware.checkCampOwner, async function (req, res) {
 
 
 
-
+//fuzzy search function
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };

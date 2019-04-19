@@ -15,18 +15,18 @@
     <form class="form-signin" action="/profile/<%=user._id%>?_method=PUT" method="POST" autocomplete="off" enctype="multipart/form-data">
         <div class="form-group form-row">
             <div class="col">
-                <input type="text" class="form-control" name="firstname" value="<%=user.firstName%>" required>
+                <input type="text" class="form-control" name="firstname" placeholder="First Name" value="<%=user.firstName%>" required>
             </div>
             <div class="col">
-                <input type="text" class="form-control" name="lastname" value="<%=user.lastName%>" required>
+                <input type="text" class="form-control" name="lastname" placeholder="Last Name" value="<%=user.lastName%>" required>
             </div>
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" name="username" value="<%=user.username%>" required>
+            <input type="text" class="form-control" name="username" placeholder="Username" value="<%=user.username%>" required>
 
         </div>
         <div class="form-group">
-            <input type="email" class="form-control" name="email" value="<%=user.email%>" required>
+            <input type="email" class="form-control" name="email" placeholder="Email" value="<%=user.email%>" required>
 
         </div>
         <div class="form-group ">
@@ -43,5 +43,37 @@
     </form>
 </div>
 </section>
-<script src="scripts/custom-file-input.js"></script>
+
+<script>
+'use strict';
+
+;( function ( document, window, index )
+{
+	var inputs = document.querySelectorAll( '.inputfile' );
+	Array.prototype.forEach.call( inputs, function( input )
+	{
+		var label	 = input.nextElementSibling,
+			labelVal = label.innerHTML;
+
+		input.addEventListener( 'change', function( e )
+		{
+			var fileName = '';
+			if( this.files && this.files.length > 1 )
+				fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+			else
+				fileName = e.target.value.split( '\\' ).pop();
+
+			if( fileName )
+				label.querySelector( 'span' ).innerHTML = fileName;
+			else
+				label.innerHTML = labelVal;
+		});
+
+		// Firefox bug fix
+		input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
+		input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
+	});
+}( document, window, 0 ));
+</script>
+<%# <script src="scripts/custom-file-input.js"></script> %>
 <% include ../partials/footer%>

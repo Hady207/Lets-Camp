@@ -12,11 +12,11 @@ middlewareObj.checkCampOwner = function (req, res, next) {
             if (err) {
                 req.flash("error","Campground not found");
                 res.redirect("back");
-                //does the user own the camp
+                //does the user own the camp or is admin
             } else if (foundCamp.owner.id.equals(req.user._id) || req.user.isAdmin) {
                 next()
             } else {
-                req.flash("error","You don't have premission to do that");
+                req.flash("error","You don't have permission to do that");
                 res.redirect("back");
             }
         });
@@ -38,7 +38,7 @@ middlewareObj.checkAuthor = function (req, res, next) {
             } else if (foundReview.author.id.equals(req.user._id) || req.user.isAdmin) {
                 next();
             } else {
-                req.flash("error","You don't have premission to do that");
+                req.flash("error","You don't have permission to do that");
                 res.redirect("back");
             }
         });

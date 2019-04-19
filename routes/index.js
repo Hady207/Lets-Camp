@@ -9,13 +9,12 @@ var crypto = require("crypto");
 var passport = require("passport");
 var multer = require("multer");
 
+// API CONFIG for Cloudnairy
 var storage = multer.diskStorage({
   filename: function(req, file, callback) {
     callback(null, Date.now() + file.originalname);
   }
 });
-
-
 
 var imageFilter = function(req, file, cb) {
   // accept image files only
@@ -34,7 +33,8 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-// Routes for homepage
+
+// Routes 
 //homepage
 router.get("/", function(req, res) {
   Campground.find({rating:{$gte:4}}).sort({createdAt:-1}).exec(function(err,foundCamp){
@@ -75,6 +75,7 @@ router.get("/register", function(req, res) {
 //handle sign up logic
 router.post("/register", upload.single("avatar"), async function(req, res) {
   try {
+    //create a new user object.
     var newUser = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -88,10 +89,10 @@ router.post("/register", upload.single("avatar"), async function(req, res) {
         public_id: image.public_id
       }
     }
-    
+    // check if the admin code equals the input form the new user
     let user = await User.register(new User(newUser), req.body.password);
     if(req.body.adminCode === process.env.ADMINCODE){
-      user.isAdmin = true;
+      user.isAdmin = true; // a new admin has been created.
       user.save();
     }
     passport.authenticate("local")(req, res, function() {
@@ -102,7 +103,6 @@ router.post("/register", upload.single("avatar"), async function(req, res) {
     console.log(err);
         return res.render("register", { error: err.message });
   }
- 
 });
 
   
@@ -158,30 +158,35 @@ router.get("/forgot", function(req, res) {
   res.render("forgot");
 });
 
+// forgot post route
 router.post("/forgot", function(req, res, next) {
   async.waterfall(
     [
       function(done) {
+        // create a hexdecimal token
         crypto.randomBytes(20, function(err, buf) {
           var token = buf.toString("hex");
           done(err, token);
         });
       },
       function(token, done) {
+        // check if the user exist
         User.findOne({ email: req.body.email }, function(err, user) {
           if (!user) {
             req.flash("error", "No account with that email address exists.");
             return res.redirect("/forgot");
           }
-
+          // change properties of the user
           user.resetPasswordToken = token;
           user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
 
+          // apply these changes and save it
           user.save(function(err) {
             done(err, token, user);
           });
         });
       },
+      // a function that send an email to a user
       function(token, user, done) {
         var smtpTransport = nodemailer.createTransport({
           service: "Gmail",
@@ -208,6 +213,7 @@ router.post("/forgot", function(req, res, next) {
             "If you did not request this, please ignore this email and your password will remain unchanged.\n"
         };
         smtpTransport.sendMail(mailOptions, function(err) {
+          // confirmation for the deveolper that the email has been sent
           console.log("mail sent");
           req.flash(
             "success",
@@ -226,6 +232,7 @@ router.post("/forgot", function(req, res, next) {
   );
 });
 
+// gets the new password form
 router.get("/reset/:token", function(req, res) {
   User.findOne(
     {
@@ -242,6 +249,7 @@ router.get("/reset/:token", function(req, res) {
   );
 });
 
+//the route that changes the password
 router.post("/reset/:token", function(req, res) {
   async.waterfall(
     [

@@ -1,5 +1,6 @@
 // As early as possible in your application, require and configure dotenv.
 require('dotenv').config()
+//required modules 
 var express = require("express"),
     app = express(),
     path   = require("path")
@@ -45,7 +46,7 @@ app.use(passport.session());
 passport.use(new localStratgy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-//app.use(flash());
+
 //this will work in all routes
 app.use(async function(req,res,next){
     res.locals.currentUser = req.user;
@@ -64,13 +65,12 @@ app.use(async function(req,res,next){
     next();
 });
 
-//Use the routes
+//Used the routes
 
 app.use("/campgrounds",campgroundRoutes);
 app.use("/campgrounds/:id/reviews",reviewRoutes);
 app.use(indexRoutes);
 app.use(profileRoutes);
-
 
 
 // open the server
