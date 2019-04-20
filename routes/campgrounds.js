@@ -134,7 +134,6 @@ router.get("/new", middleware.isLoggedIn, function (req, res) {
 
 //Create - add new campground to DB
 router.post("/", middleware.isLoggedIn, upload.array('images',4), function (req, res) {
-
     //get data from form and add to campground database
     req.body.Camp.owner = {
         id: req.user._id,
@@ -144,9 +143,6 @@ router.post("/", middleware.isLoggedIn, upload.array('images',4), function (req,
         username: req.user.username,
         email:req.user.email
     }
-
-    
-
     // adding the map information to the database
     geocoder.geocode(req.body.Camp.location,async function (err, data) {
         if (err || !data.length) {
