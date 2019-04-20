@@ -36,6 +36,7 @@ var campgroundSchema = new mongoose.Schema({
          firstName:String,
          lastName:String,
          avatar:String,
+         email:String
     },
     reviews:[
         {

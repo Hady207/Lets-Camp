@@ -69,7 +69,7 @@ router.get("/", function (req, res) {
             }
         })
     } else {
-        console.log(req.query.cost)
+        // console.log(req.query.cost)
         if(req.query.cost){
             Campground.find({cost:req.query.cost},function(err,foundcamp){
                 if(foundcamp.length < 1){
@@ -82,7 +82,7 @@ router.get("/", function (req, res) {
                 }); 
             })
         }else if(req.query.rating){
-            console.log(req.query.rating)
+            // console.log(req.query.rating)
             Campground.find({rating:req.query.rating},function(err,foundcamp){
                 if(err){
                     if(foundcamp.length < 1){
@@ -96,7 +96,7 @@ router.get("/", function (req, res) {
                 }); 
             });
         } else if(req.query.city) {
-            console.log(req.query.city)
+            // console.log(req.query.city)
             Campground.find({city:req.query.city},function(err,foundcamp){
                 if(err){
                     if(foundcamp.length < 1){
@@ -113,7 +113,6 @@ router.get("/", function (req, res) {
         Campground.find({}).sort({createdAt:-1}).exec(function (err, allCampgrounds) {
             if (err) {
                 console.log(err);
-                
             } else {
                 res.render("campgrounds/campgrounds", {
                     campgrounds: allCampgrounds,
@@ -127,6 +126,7 @@ router.get("/", function (req, res) {
 
 //New - show form to create new campground
 router.get("/new", middleware.isLoggedIn, function (req, res) {
+
     res.render("campgrounds/new", {
         page: "add"
     });
