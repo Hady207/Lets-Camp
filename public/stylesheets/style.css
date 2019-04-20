@@ -28,7 +28,6 @@ body{
 
 #showcase {
     position: relative;
-    /* background: url("https://images.unsplash.com/photo-1506219033545-98584395b982?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80") no-repeat; */
     background: url("https://images.unsplash.com/photo-1520515148174-24eb6de39f21?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80") no-repeat;
     min-height: 600px;
     background-size: cover
@@ -260,7 +259,8 @@ form .stars {
 
 @media (max-width: 768px) {
     #showcase {
-        min-height: 500px;
+        min-height: 568px;
+        background-size: cover
     }
 
     #searchbarPhone{
