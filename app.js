@@ -29,7 +29,6 @@ mongoose.set("useFindAndModify", false);
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
-//mongodb+srv://hady:hady@cluster0-01fm4.mongodb.net/test?retryWrites=true
 var url = process.env.LETCAMPDB||"mongodb://localhost:27017/letsCamp_appv1";
 mongoose.connect(url, {useNewUrlParser: true});
 app.use(flash());

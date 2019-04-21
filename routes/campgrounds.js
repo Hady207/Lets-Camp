@@ -126,7 +126,6 @@ router.get("/", function (req, res) {
 
 //New - show form to create new campground
 router.get("/new", middleware.isLoggedIn, function (req, res) {
-
     res.render("campgrounds/new", {
         page: "add"
     });
@@ -151,19 +150,19 @@ router.post("/", middleware.isLoggedIn, upload.array('images',4), function (req,
         }
         var lat = data[0].latitude;
         var lng = data[0].longitude;
-        var location = data[0].formattedAddress
+        var location = data[0].formattedAddress;
 
-        req.body.Camp.location = location
-        req.body.Camp.lng = lng
-        req.body.Camp.lat = lat
+        req.body.Camp.location = location;
+        req.body.Camp.lng = lng;
+        req.body.Camp.lat = lat;
 
         req.body.Camp.images=[];
         for(const file of req.files) {
-            let image = await cloudinary.v2.uploader.upload(file.path)
+            let image = await cloudinary.v2.uploader.upload(file.path);
             req.body.Camp.images.push({
                 url: image.secure_url,
                 public_id: image.public_id
-            })
+            });
           }
         req.body.Camp.image = req.body.Camp.images[0].url;
         try {
@@ -218,7 +217,7 @@ router.get("/:id/booking", middleware.isLoggedIn, function (req, res) {
         } else {
             res.render("campgrounds/booking", {
                 campground: foundCamp
-            })
+            });
         }
     });
 });
@@ -256,7 +255,6 @@ router.post("/:id/booking",async function (req, res) {
         );
         res.redirect("/campgrounds")
       });
-
 });
 
 
