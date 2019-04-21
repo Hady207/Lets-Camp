@@ -42,6 +42,7 @@ router.get("/", function(req, res) {
       if(err){
         console.log(foundCamp)
         console.log(err)
+        res.redirect("/campgrounds")
       }else{
         Review.find({}).sort({createdAt:-1}).exec(function(err,latestReview){
           Campground.find({}).sort({createdAt:-1}).exec(function(err,latestCamps){
@@ -101,12 +102,11 @@ router.post("/register", upload.single("avatar"), async function(req, res) {
     });
   } catch (err) {
     console.log(err);
-        return res.render("register", { error: err.message });
+    return res.render("register", { error: err.message });
   }
 });
 
   
-
 //Show login form
 router.get("/login", function(req, res) {
   res.render("login");
@@ -131,7 +131,7 @@ router.post("/login", function(req, res, next) {
         return next(err);
       }
       //If you put the property on the session object then it is available in the next route even after a redirect.
-      // otherwise if there's a redirecTo property on the session then set the redirectTo variable equal to it,
+      // otherwise if there's a redirectTo property on the session then set the redirectTo variable equal to it,
       // else set redirectTo var equal to /campgrounds (default url)
       var redirectTo = req.session.redirectTo ? req.session.redirectTo: "/campgrounds";
       // delete the redirectTo property from session, whether it exists or not

@@ -27,7 +27,7 @@ middlewareObj.checkCampOwner = function (req, res, next) {
 }
 
 
-//Method for authoritation fpr reviews
+//Method for authoritation for reviews
 middlewareObj.checkAuthor = function (req, res, next) {
     //returns true or false using the passport method 
     if (req.isAuthenticated()) {

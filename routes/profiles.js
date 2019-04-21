@@ -171,7 +171,7 @@ router.put("/profile/:id", upload.single('avatar'), async function (req, res) {
     if (req.file) {
         if (req.user.avatar.public_id) {
             //remove the old picture from cloudnairy
-            cloudinary.v2.destroy(user.avatar.public_id)
+            cloudinary.v2.uploader.destroy(req.user.avatar.public_id)
         }
         // add the new one to the object edit user object
         let avatar = await cloudinary.uploader.upload(req.file.path);
