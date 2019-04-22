@@ -1,9 +1,9 @@
-fixing the avatar from routes
+fixing the avatar from routes                "done"
 fix the redirect after logging in            "done"
 Changes to the routes                        "done"
 connecting the user model to other models    "done"
-finishing up the basic functionailty         ""
-finishing touches on the UI 
+finishing up the basic functionailty         "done"
+finishing touches on the UI                  "done"
 finishing the comments routes                "done"
 adding the flash messages                    "done"
 adding momment.js                            "done"
